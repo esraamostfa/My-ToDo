@@ -7,13 +7,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:my_todo/data/api/task/firestore_task_api.dart';
+import 'package:my_todo/data/api/user_auth/firebase_user_auth_api.dart';
 
 import 'package:my_todo/main.dart';
+import 'package:my_todo/shared/app.dart';
+import 'package:my_todo/shared/app_repository.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    AppRepository appRepository = AppRepository(userAuthApi: FireBaseUserAuthApi(), myToDoApi: FirestoreTaskApi());
+    await tester.pumpWidget( MyToDoApp(appRepository: appRepository,));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

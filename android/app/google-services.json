@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "65374733669",
+    "project_id": "my-todo-51f04",
+    "storage_bucket": "my-todo-51f04.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:65374733669:android:70d20cf06c547f87ec8d8c",
+        "android_client_info": {
+          "package_name": "com.fasila.mytodo.my_todo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "65374733669-fqdi372l08b8l1r2rekn2b6vu1dsdq3i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6hhLcKH6vU9v2KV7jh2Il28MPyRhDt4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "65374733669-fqdi372l08b8l1r2rekn2b6vu1dsdq3i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "65374733669-h7r1c7v0mdnkf9kg6lp2k2ung8miq3uq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.fasila.mytodo.myTodo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

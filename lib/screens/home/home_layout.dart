@@ -36,11 +36,11 @@ class HomeLayout extends StatelessWidget {
         listener: (context, state) {
           if(state is LogoutSuccessState)
             {
-              showToast('logged out successfully', ToastStates.success);
+              showToast('logged out successfully', ToastStates.success, context);
               navigateAndFinish(context, LoginScreen());
             }
           if(state is LogoutErrorState) {
-            showToast(state.error, ToastStates.error);
+            showToast(state.error, ToastStates.error, context);
           }
 
           if(state is LogoutLoadingState) cubit.loadingLogout = true;

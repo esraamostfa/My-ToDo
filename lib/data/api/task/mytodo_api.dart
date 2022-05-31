@@ -17,6 +17,9 @@ abstract class MyToDoApi {
   ///mark task with given id as archived
   Future<void> archiveTask(String id);
 
-  ///return stream of all tasks
+  ///return Future list all tasks
   Future<List<Task>> getAllTasks();
+
+  ///get task by id
+Future<Task> getTask(String id);
 }

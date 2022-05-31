@@ -13,3 +13,7 @@ class TaskErrorGetState extends TasksState {}
 class TaskLoadGetState extends TasksState {}
 
 class TaskCompletedState extends TasksState {}
+
+class TaskSuccessfullyDeletedState extends TasksState {}
+class TaskErrorDeletedState extends TasksState {}
+class TaskLoadDeletedState extends TasksState {}

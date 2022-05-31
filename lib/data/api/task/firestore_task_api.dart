@@ -5,15 +5,13 @@ import 'package:my_todo/data/models/task.dart';
 
 class FirestoreTaskApi extends MyToDoApi {
 
-  final FirebaseFirestore fireStore = FirebaseFirestore.instance;
-  final User user = FirebaseAuth.instance.currentUser!;
+  //final FirebaseFirestore fireStore = FirebaseFirestore.instance;
+  //final User user = FirebaseAuth.instance.currentUser!;
+  final tasksCollection = FirebaseFirestore.instance.collection('users').doc(FirebaseAuth.instance.currentUser!.uid).collection('tasks');
 
   @override
   Future<String> addTask(Task task) async {
-    DocumentReference taskDoc = await fireStore
-        .collection('users')
-        .doc(user.uid)
-    .collection('tasks')
+    DocumentReference taskDoc = await tasksCollection
     .add(task.toJson());
 
     return taskDoc.id;
@@ -27,24 +25,20 @@ class FirestoreTaskApi extends MyToDoApi {
 
   @override
   Future<void> completeTask(String id, bool isCompleted) async {
-    fireStore
-        .collection('users')
-        .doc(user.uid)
-        .collection('tasks')
+    tasksCollection
         .doc(id).update({'isCompleted' : isCompleted});
   }
 
   @override
-  Future<void> deleteTask(String id) {
-    // TODO: implement deleteTask
-    throw UnimplementedError();
+  Future<void> deleteTask(String id) async {
+    tasksCollection.doc(id).delete();
   }
 
   @override
   Future<List<Task>> getAllTasks() async {
     List<Task> tasks = [];
     
-     await fireStore.collection('users').doc(user.uid).collection('tasks').get().then((value){
+     await tasksCollection.get().then((value){
 
          for (var task in value.docs) {
            tasks.add(Task.fromJson(task.data()));
@@ -57,10 +51,14 @@ class FirestoreTaskApi extends MyToDoApi {
 
   @override
   Future<void> updateTask(Task task) async {
-    fireStore
-        .collection('users')
-        .doc(user.uid)
-        .collection('tasks')
+    tasksCollection
         .doc(task.id).update(task.toJson());
+  }
+
+  @override
+  Future<Task> getTask(String id) async {
+    final taskMap = await tasksCollection.doc(id).get();
+    Task task = Task.fromJson(taskMap.data()!);
+    return task;
   }
 }

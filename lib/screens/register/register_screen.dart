@@ -21,11 +21,11 @@ class RegisterScreen extends StatelessWidget {
     return BlocConsumer<RegisterCubit, RegisterStates>(
       listener: (context, state) {
         if (state is RegisterErrorState) {
-          showToast(state.error, ToastStates.error);
+          showToast(state.error, ToastStates.error, context);
         }
 
         if (state is CreateUserSuccessState) {
-          showToast('Registered successfully', ToastStates.success);
+          showToast('Registered successfully', ToastStates.success, context);
           navigateAndFinish(context, HomeLayout());
           // CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
           //   navigateAndFinish(context, HomeLayout());

@@ -17,15 +17,39 @@ void navigateAndFinish(context, widget) {
   );
 }
 
-void showToast(String message, ToastStates state) {
-  Fluttertoast.showToast(
-      msg: message,
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 5,
-      backgroundColor: chooseToastState(state),
-      textColor: Colors.white,
-      fontSize: 16.0
+
+
+void showToast(String message, ToastStates state, context, {Widget? actionWidget}) {
+  FToast fToast = FToast();
+  fToast.init(context);
+
+  fToast.showToast(
+    child: Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+       width: 170,
+       decoration: BoxDecoration(
+         color: chooseToastState(state),
+         borderRadius: BorderRadius.circular(20)
+       ),
+      child: Row(
+        children: [
+          Text(message),
+          const Spacer(),
+          if(actionWidget != null)
+          actionWidget
+        ],
+      ),
+
+    // ),
+    //   msg: message,
+    //   toastLength: Toast.LENGTH_SHORT,
+    //   gravity: ToastGravity.BOTTOM,
+    //   timeInSecForIosWeb: 5,
+    //   backgroundColor: chooseToastState(state),
+    //   textColor: Colors.white,
+    //fontSize: 16.0
+    ),
+    toastDuration: Duration(milliseconds: 5000)
   );
 }
 

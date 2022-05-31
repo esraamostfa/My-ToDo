@@ -6,7 +6,7 @@ import 'colors.g.dart';
 ThemeData lightTheme = ThemeData.light().copyWith(
     textTheme: TextTheme(
         headline4: GoogleFonts.lemonada(
-          fontSize: 24,
+          fontSize: 16,
           color: lightColorScheme.onBackground,
         )
     ),
@@ -26,13 +26,16 @@ ThemeData lightTheme = ThemeData.light().copyWith(
       unselectedLabelStyle: GoogleFonts.lemonada(
         color: lightColorScheme.onBackground,
       ),
-    )
+    ),
+  //checkboxTheme: CheckboxThemeData(checkColor: lightColorScheme.secondary),
+  toggleableActiveColor: lightColorScheme.primary,
+  dividerTheme: DividerThemeData(thickness: 1, color: lightColorScheme.secondary, indent: 20, endIndent: 20),
 );
 
 ThemeData darkTheme = ThemeData.dark().copyWith(
   textTheme: TextTheme(
     headline4: GoogleFonts.lemonada(
-        fontSize: 24,
+        fontSize: 16,
         color: darkColorScheme.onBackground,
     )
   ),
@@ -54,4 +57,6 @@ ThemeData darkTheme = ThemeData.dark().copyWith(
       color: darkColorScheme.onBackground,
     ),
   ),
+    toggleableActiveColor: darkColorScheme.primary,
+  dividerTheme: DividerThemeData(thickness: 1, color: darkColorScheme.secondary, indent: 20, endIndent: 20),
 );

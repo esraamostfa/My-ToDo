@@ -57,7 +57,10 @@ class AppRepository {
   ///mark task with given id as archived
   Future<void> archiveTask(String id) => myToDoApi.archiveTask(id);
 
-  ///return stream of all tasks
+  ///return future list of all tasks
   Future<List<Task>> getAllTasks() => myToDoApi.getAllTasks();
+
+  ///get task by id
+Future<Task> getTask(String id) => myToDoApi.getTask(id);
 
 }

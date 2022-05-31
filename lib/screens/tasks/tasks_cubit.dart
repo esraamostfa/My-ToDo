@@ -19,7 +19,8 @@ class TasksCubit extends Cubit<TasksState> {
       {required String title, String? details, String? date, String? time}) {
     emit(TaskLoadAddState());
 
-    Task task = Task(id: '', title: title, details: details, date: date, time: time);
+    Task task =
+        Task(id: '', title: title, details: details, date: date, time: time);
     print('task title: ${task.title}');
     _appRepository.addTask(task).then((value) {
       _appRepository.updateTask(task.copyWith(id: value));
@@ -45,7 +46,37 @@ class TasksCubit extends Cubit<TasksState> {
 
   void completeTask(int index, String id, bool isCompleted) {
     tasks[index].isCompleted = isCompleted;
-    _appRepository.completeTask(id, isCompleted)
+    _appRepository
+        .completeTask(id, isCompleted)
         .then((value) => emit(TaskCompletedState()));
+  }
+
+  ///delete task
+  bool undoDelete = false;
+  String? deletedTaskId;
+
+  void deleteTask(int index, String id) {
+    emit(TaskLoadDeletedState());
+
+    deletedTaskId = id;
+
+    tasks.removeAt(index);
+
+    Future.delayed(const Duration(milliseconds: 5000), () {
+      if (!undoDelete) {
+        _appRepository.deleteTask(id).then((value) {
+          emit(TaskSuccessfullyDeletedState());
+        }).catchError((error) => emit(TaskErrorDeletedState()));
+      }
+      undoDelete = false;
+    });
+  }
+
+  void undoDeleteTask() {
+    undoDelete = true;
+    _appRepository.getTask(deletedTaskId!).then((value) {
+      tasks.add(value);
+      getAllTasks();
+    });
   }
 }

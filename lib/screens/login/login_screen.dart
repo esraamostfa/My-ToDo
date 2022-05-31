@@ -22,11 +22,11 @@ class LoginScreen extends StatelessWidget {
 
     return BlocConsumer<LoginCubit, LoginStates>(listener: (context, state) {
       if (state is LoginErrorState) {
-        showToast(state.error, ToastStates.error);
+        showToast(state.error, ToastStates.error, context);
       }
 
       if (state is LoginSuccessState) {
-        showToast('Registered successfully', ToastStates.success);
+        showToast('Registered successfully', ToastStates.success, context);
         navigateAndFinish(context, HomeLayout());
       }
 
